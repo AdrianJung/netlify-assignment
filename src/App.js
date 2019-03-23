@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import Header from "./Header"
 class App extends Component {
   state = {
-    apiResult: [
+
+      question : "",
+correct_answer : "",
+incorrect_answers : [
 
     ]
   };
@@ -11,32 +14,37 @@ class App extends Component {
     this.fetchApi()
   }
 
+  fetchImage = (query) => {
+    const url = `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=9kJfRi6ip66K2xkxwSKa7ZAyK7H5sjpY&limit=1`
+    fetch(url)
+      .then(data => {
+        console.log(data)
+      })
+  }
   fetchApi = () => {
     let limit = "1"
     let category = "26"
-    let difficulty = "easy"
     let type = "multiple"
-    const url = `https://opentdb.com/api.php?amount=${limit}&category=${category}&difficulty=${difficulty}&type=${type}`
+    const url = `https://opentdb.com/api.php?amount=${limit}&category=${category}&type=${type}`
 
     fetch(url)
       .then(res => res.json())
       .then(data => {
+
+        this.fetchImage(data.results[0].correct_answer.replace(/&#039;/g, '\'').replace(/\s/g, "+").trimRight("+"))
         this.setState({
-          apiResult: [ ...this.state.apiResult, data.results[0]]
+          question:  data.results[0].question.replace(/&#039;/g, '\''),
+          correct_answer:  data.results[0].correct_answer.replace(/&#039;/g, '\''),
+          incorrect_answers:  data.results[0].incorrect_answers.map(answer => {
+            return answer.replace(/&#039;/g, '\'')
+          })
         })
       })  
     }
     
-    
     render() {
       
-   this.state.apiResult.map(item => {
-     console.log(item.correct_answer)
-     console.log(item.question)
-     item.incorrect_answers.map(incorrect_answer => {
-       console.log(incorrect_answer)
-     })
-    })
+console.log(this.state)
     return (
       <div className="App">
         <div className="container">
@@ -44,7 +52,12 @@ class App extends Component {
           <Header />
             <button onClick={this.fetchApi}>Fetch</button>
           </div>
-          <h2>GIPHYQUIZ</h2>
+          <h1>{this.state.question}</h1>
+          <p>A: {this.state.correct_answer}</p>
+          <p>B: {this.state.incorrect_answers[0]}</p>
+          <p>C: {this.state.incorrect_answers[1]}</p>
+          <p>D: {this.state.incorrect_answers[2]}</p>
+
         </div>
       </div>
     );
