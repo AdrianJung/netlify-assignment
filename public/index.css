@@ -1,0 +1,19 @@
+* {
+	padding: 0;
+	margin: 0;
+	position: relative;
+	box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Display;
+  src: url('resources/fonts/nexablack.woff') format('woff');
+}
+@font-face {
+  font-family: Regular;
+  src: url('resources/fonts/nexablack.woff') format('woff');
+}
+
+h1,h2,h3,h4,h5 {
+	font-family: Display;
+}

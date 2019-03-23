@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Header from "./Header"
 class App extends Component {
   state = {
-    apiResult: []
+    apiResult: [
+
+    ]
   };
 
   componentDidMount() {
@@ -11,7 +13,7 @@ class App extends Component {
 
   fetchApi = () => {
     let limit = "1"
-    let category = "10"
+    let category = "26"
     let difficulty = "easy"
     let type = "multiple"
     const url = `https://opentdb.com/api.php?amount=${limit}&category=${category}&difficulty=${difficulty}&type=${type}`
@@ -29,10 +31,11 @@ class App extends Component {
     render() {
       
    this.state.apiResult.map(item => {
-     console.log(item)
-     console.log(item.category)
      console.log(item.correct_answer)
-     console.log(item.difficulty)
+     console.log(item.question)
+     item.incorrect_answers.map(incorrect_answer => {
+       console.log(incorrect_answer)
+     })
     })
     return (
       <div className="App">
@@ -41,6 +44,7 @@ class App extends Component {
           <Header />
             <button onClick={this.fetchApi}>Fetch</button>
           </div>
+          <h2>GIPHYQUIZ</h2>
         </div>
       </div>
     );
