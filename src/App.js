@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "./Header"
 class App extends Component {
   state = {
-    apiResults: []
+    apiResult: []
   };
 
   componentDidMount() {
@@ -20,7 +20,7 @@ class App extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          apiResults: [ ...this.state.apiResults, data.results]
+          apiResult: [ ...this.state.apiResult, data.results[0]]
         })
       })  
     }
@@ -28,7 +28,7 @@ class App extends Component {
     
     render() {
       
-      console.log(this.state.apiResults[0])
+      console.log(this.state.apiResult)
     return (
       <div className="App">
         <div className="container">
