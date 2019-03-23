@@ -7,7 +7,8 @@ class App extends Component {
 correct_answer : "",
 incorrect_answers : [
 
-    ]
+    ],
+    correct_image: ""
   };
 
   componentDidMount() {
@@ -17,8 +18,10 @@ incorrect_answers : [
   fetchImage = (query) => {
     const url = `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=9kJfRi6ip66K2xkxwSKa7ZAyK7H5sjpY&limit=1`
     fetch(url)
-      .then(data => {
-        console.log(data)
+      .then(res => res.json()).then(result => {
+        this.setState({
+          correct_image: result.data[0].images.downsized.url
+        })
       })
   }
   fetchApi = () => {
@@ -54,6 +57,7 @@ console.log(this.state)
           </div>
           <h1>{this.state.question}</h1>
           <p>A: {this.state.correct_answer}</p>
+          <img src={this.state.correct_image} alt=""/>
           <p>B: {this.state.incorrect_answers[0]}</p>
           <p>C: {this.state.incorrect_answers[1]}</p>
           <p>D: {this.state.incorrect_answers[2]}</p>
