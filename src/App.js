@@ -28,7 +28,12 @@ class App extends Component {
     
     render() {
       
-      console.log(this.state.apiResult)
+   this.state.apiResult.map(item => {
+     console.log(item)
+     console.log(item.category)
+     console.log(item.correct_answer)
+     console.log(item.difficulty)
+    })
     return (
       <div className="App">
         <div className="container">
