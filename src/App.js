@@ -53,8 +53,9 @@ incorrect_answers : [
     let limit = "1"
     let category = "26"
     let type = "multiple"
-    const url = `https://opentdb.com/api.php?amount=${limit}&category=${category}&type=${type}`
-
+    let difficulty ="easy"
+    const url = `https://opentdb.com/api.php?amount=${limit}&category=${category}&type=${type}&difficulty=${difficulty}`
+console.log(url)
     fetch(url)
       .then(res => res.json())
       .then(data => {
