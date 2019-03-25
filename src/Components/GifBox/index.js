@@ -42,4 +42,3 @@ export default class GifBox extends Component {
     )
   }
 }
-

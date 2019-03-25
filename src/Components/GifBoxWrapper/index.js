@@ -1,13 +1,14 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import React, { Component } from 'react'
 import GifBox from '../GifBox'
-
+import ProgressBar from '../ProgressBar'
 const StyledDiv  = styled.div`
   display: flex;
   width: 500px;
   height: 400px;
   flex-wrap: wrap;
-`;
+
+`
 
 
 export default class GifBoxWrapper extends Component {
@@ -113,6 +114,7 @@ console.log(url)
   render() {
     return (
       <div className="game-wrapper">
+      <ProgressBar />
       <button onClick={this.fetchApi}>Fetch</button>
       <h1>{this.state.question}</h1>
       <StyledDiv>
