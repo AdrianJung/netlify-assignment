@@ -3,6 +3,7 @@
 	margin: 0;
 	position: relative;
 	box-sizing: border-box;
+	transition: 0.25s;
 }
 
 @font-face {
@@ -16,4 +17,8 @@
 
 h1,h2,h3,h4,h5 {
 	font-family: Display;
+}
+
+button {
+	font-family: Regular;
 }
