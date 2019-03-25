@@ -91,7 +91,7 @@ console.log(url)
         .trimRight("+")
         
         )
-      this.setState({
+      this.setState({ 
         question:  data.results[0].question.replace(/&#039;/g, '’').replace(/&quot;/g, '"'),
         correct_answer:  data.results[0].correct_answer.replace(/&#039;/g, '\''),
         incorrect_answers:  data.results[0].incorrect_answers.map(answer => {
@@ -100,38 +100,24 @@ console.log(url)
       })
     })  
   }
-  
-  correctAnswer = () => {
-    this.setState({
-      points: this.state.points + 1
-    })
-   console.log("CORRECT")
+  replay = () => {
 
-  }
-
-  wrongAnswer = () => {
-    this.setState({
-      points: this.state.points - 1
-    })
-   console.log("WRONG current points:" + this.state.points)
-
+    document.querySelector('.game-wrapper').setAttribute('style','opacity: 0;')
+    setTimeout(() => {
+      this.fetchApi()
+      document.querySelector('.game-wrapper').setAttribute('style','opacity: 1;')
+    }, 1000);
+    
   }
   
-  handleClick = (e) => {
-    this.setState({
-      isClicked: !this.state.isClicked
-    })
-    this.props.isCorrect ? this.correctAnswer() : this.wrongAnswer()
-  }
-
   render() {
     return (
-      <div>
+      <div className="game-wrapper">
       <button onClick={this.fetchApi}>Fetch</button>
       <h1>{this.state.question}</h1>
       <StyledDiv>
       {/* <p>A: {this.state.correct_answer}</p> */}
-          <GifBox id={1} url={this.state.correct_image} alt="" isCorrect={true} onClick={() => this.handleClick}/>
+          <GifBox id={1} url={this.state.correct_image} alt="" isCorrect={true} replay={this.replay}/>
 
           {/* <p>B: {this.state.incorrect_answers[0]}</p> */}
           <GifBox id={2} url={this.state.incorrect_image_b} alt=""/>

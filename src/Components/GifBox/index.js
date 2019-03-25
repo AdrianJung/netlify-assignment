@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import GifBoxWrapper from '../GifBoxWrapper'
 
 const StyledImage = styled.img`
   width: 200px;
   height: 200px;
-  margin: 1px;
-  opacity: 0.5;
-  ${props => props.highlighted && 'opacity: 1'}
+  margin: 2px;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.02);
+  }
+  ${props => props.highlighted && 'border: 2px solid black'}
 `
 
 
@@ -14,19 +19,14 @@ export default class GifBox extends Component {
   
   state = {
     isClicked: false,
-    win: false
   }
+
   correctAnswer = (e) => {
-   console.log("CORRECT")
-   console.log(e.currentTarget.parentElement)
-   this.setState({
-     win: true
-    })
-    
+    this.props.replay()
   }
+
   wrongAnswer = () => {
-    console.log("WRONG")
-    
+
   }
   
   handleClick = (e) => {
@@ -34,7 +34,6 @@ export default class GifBox extends Component {
       isClicked: !this.state.isClicked
     })
     this.props.isCorrect ? this.correctAnswer() : this.wrongAnswer()
-    console.log(this.state.win)
   }
 
   render() {
