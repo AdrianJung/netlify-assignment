@@ -13,7 +13,7 @@ const StyledDiv  = styled.div`
 
 export default class GifBoxWrapper extends Component {
   state = {
-
+points: 0,
     question : "",
 correct_answer : "",
 incorrect_answers : [
@@ -101,34 +101,48 @@ console.log(url)
       })
     })  
   }
-  replay = () => {
-
+  restartGame = () => {
     document.querySelector('.game-wrapper').setAttribute('style','opacity: 0;')
     setTimeout(() => {
       this.fetchApi()
       document.querySelector('.game-wrapper').setAttribute('style','opacity: 1;')
     }, 1000);
+  }
+  choseRightAnswer = () => {
+    this.setState({
+      points: this.state.points +1
+    })
+    console.log('Well Done!')
+    this.restartGame()
     
   }
-  
+  choseWrongAnswer = () => {
+    this.setState({
+      points: this.state.points - 1
+    })
+    console.log('Try Again!')
+    this.restartGame()
+  }
   render() {
     return (
       <div className="game-wrapper">
       <ProgressBar />
       <button onClick={this.fetchApi}>Fetch</button>
       <h1>{this.state.question}</h1>
+      <p>current points: {this.state.points}</p>
       <StyledDiv>
       {/* <p>A: {this.state.correct_answer}</p> */}
-          <GifBox id={1} url={this.state.correct_image} alt="" isCorrect={true} replay={this.replay}/>
+          <GifBox id={1} url={this.state.correct_image} alt="" isCorrect={true} choseRightAnswer={this.choseRightAnswer}/>
+          <img id={1} url={this.state.correct_image} alt="" isCorrect={true} choseRightAnswer={this.choseRightAnswer}/>
 
           {/* <p>B: {this.state.incorrect_answers[0]}</p> */}
-          <GifBox id={2} url={this.state.incorrect_image_b} alt=""/>
+          <GifBox id={2} url={this.state.incorrect_image_b} choseWrongAnswer={this.choseWrongAnswer} alt=""/>
 {/* 
           <p>C: {this.state.incorrect_answers[1]}</p> */}
-          <GifBox id={3} url={this.state.incorrect_image_c} alt=""/>
+          <GifBox id={3} url={this.state.incorrect_image_c} choseWrongAnswer={this.choseWrongAnswer}alt=""/>
 {/* 
           <p>D: {this.state.incorrect_answers[2]}</p> */}
-          <GifBox id={4} url={this.state.incorrect_image_d} alt=""/>
+          <GifBox id={4} url={this.state.incorrect_image_d} choseWrongAnswer={this.choseWrongAnswer}alt=""/>
       </StyledDiv>
       </div>
     )
