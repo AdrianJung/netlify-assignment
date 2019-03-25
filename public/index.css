@@ -3,7 +3,13 @@
 	margin: 0;
 	position: relative;
 	box-sizing: border-box;
+<<<<<<< HEAD
 	transition: 0.25s;
+=======
+	font-family: Regular;
+	background: black;
+	color: white;
+>>>>>>> 61323d7c9b7648a38a81317e6843293cfff59212
 }
 
 @font-face {
@@ -12,9 +18,12 @@
 }
 @font-face {
   font-family: Regular;
-  src: url('resources/fonts/nexablack.woff') format('woff');
+  src: url('resources/fonts/nexaregular.woff') format('woff');
 }
+p, button {
+	font-size: 18px;
 
+}
 h1,h2,h3,h4,h5 {
 	font-family: Display;
 }
