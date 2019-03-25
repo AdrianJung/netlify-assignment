@@ -14,7 +14,6 @@ class App extends Component {
           <Header />
           <Route exact path="/" component={StartScreen} />
           <Route path="/Game" component={QuizWrapper}/>
-
       </div>
     );
   }

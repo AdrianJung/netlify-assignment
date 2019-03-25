@@ -22,11 +22,11 @@ export default class GifBox extends Component {
   }
 
   correctAnswer = (e) => {
-    this.props.replay()
+    this.props.choseRightAnswer()
   }
 
   wrongAnswer = () => {
-
+    this.props.choseWrongAnswer()
   }
   
   handleClick = (e) => {
