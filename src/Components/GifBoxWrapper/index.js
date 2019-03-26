@@ -102,10 +102,13 @@ console.log(url)
     })  
   }
   restartGame = () => {
+    document.querySelector('.fill').classList.remove('fillAnim');
+   
     document.querySelector('.game-wrapper').setAttribute('style','opacity: 0;')
+    this.fetchApi()
     setTimeout(() => {
-      this.fetchApi()
       document.querySelector('.game-wrapper').setAttribute('style','opacity: 1;')
+      document.querySelector('.fill').classList.add('fillAnim')
     }, 1000);
   }
   choseRightAnswer = () => {
@@ -126,11 +129,11 @@ console.log(url)
   render() {
     return (
       <div className="game-wrapper">
-      <ProgressBar />
-      <button onClick={this.fetchApi}>Fetch</button>
-      <h1>{this.state.question}</h1>
-      <p>current points: {this.state.points}</p>
+      {/* <button onClick={this.fetchApi}>Fetch</button> */}
       <StyledDiv>
+      <h1>{this.state.question}</h1>
+      <ProgressBar />
+      {/* <p>{this.state.points}</p> */}
       {/* <p>A: {this.state.correct_answer}</p> */}
           <GifBox id={1} url={this.state.correct_image} alt="" isCorrect={true} choseRightAnswer={this.choseRightAnswer}/>
           <img id={1} url={this.state.correct_image} alt="" isCorrect={true} choseRightAnswer={this.choseRightAnswer}/>
