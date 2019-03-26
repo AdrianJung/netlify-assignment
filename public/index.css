@@ -15,14 +15,7 @@
   font-family: Regular;
   src: url('resources/fonts/nexaregular.woff') format('woff');
 }
-@keyframes fill {
-		 0% {
-			width: 0%;
-		}
-		100% {
-			width: 100%;
-		}
-}
+
 @keyframes flash {
 	0% {
 		opacity: 0;
@@ -53,18 +46,9 @@ body {
 	justify-content: center;
 }
 
-.progress-bar {
-	border: 1px solid black;
-	height: 20px;
-	width: 405px;
-	margin-left: 2px;
-}
 
-.fillAnim {
-	animation:  15s fill linear 1;
-	height: 100%;
-	background-color: black;
-}
+
+
 
 .wrong-right {
 	font-size: 172px;
