@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import GifBoxWrapper from '../GifBoxWrapper'
-
+let randNum = 3
 const StyledImage = styled.img`
   width: 200px;
   height: 200px;
@@ -12,6 +12,7 @@ const StyledImage = styled.img`
     transform: scale(1.02);
   }
   ${props => props.highlighted && 'border: 2px solid black'}
+  ${props => props.randomOrder && `order: 3`}
 `
 
 

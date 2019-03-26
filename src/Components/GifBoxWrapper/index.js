@@ -180,6 +180,7 @@ export default class GifBoxWrapper extends Component {
           <p className="wrong-right" />
           <h1 className="question"> {this.state.question} </h1>
           <GifBox
+            randomOrder
             id={1}
             url={this.state.correct_image}
             alt=""
