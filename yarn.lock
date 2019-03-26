@@ -8169,6 +8169,11 @@ react-scripts@2.1.8:
   optionalDependencies:
     fsevents "1.2.4"
 
+react-time-counter@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-time-counter/-/react-time-counter-1.0.2.tgz#393f40a7026fa2b6926b068357ae694ffdc0246c"
+  integrity sha512-cByPAZOah0RkyJaKAl7bU0TmQ4voPNAYJUVAbI6K4Xq4mltTcbC4lduzjCCZdEYPjOl8ZiAgIhkrY+KkaZ+5jQ==
+
 react@^16.8.4:
   version "16.8.5"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.5.tgz#49be3b655489d74504ad994016407e8a0445de66"
