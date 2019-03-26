@@ -45,6 +45,7 @@ body {
 	border: 1px solid black;
 	height: 20px;
 	width: 405px;
+	margin-left: 2px;
 }
 
 .fillAnim {
