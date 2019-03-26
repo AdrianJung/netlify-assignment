@@ -15,14 +15,19 @@
   font-family: Regular;
   src: url('resources/fonts/nexaregular.woff') format('woff');
 }
-@keyframes fill {
-		 0% {
-			width: 0%;
-		}
-		100% {
-			width: 100%;
-		}
+
+@keyframes flash {
+	0% {
+		opacity: 0;
+ }
+ 25%{
+	 opacity: 1;
+ }
+ 100% {
+	opacity: 0;
+ }
 }
+
 p, button {
 	font-size: 18px;
 
@@ -41,15 +46,16 @@ body {
 	justify-content: center;
 }
 
-.progress-bar {
-	border: 1px solid black;
-	height: 20px;
-	width: 405px;
-	margin-left: 2px;
+
+
+
+
+.wrong-right {
+	font-size: 172px;
+	position: absolute;
+	transform: translate(-280px, 130px);
 }
 
-.fillAnim {
-	animation:  15s fill linear 1;
-	height: 100%;
-	background-color: black;
+.flashing {
+	animation: 1.2s flash ease-in-out 1;
 }

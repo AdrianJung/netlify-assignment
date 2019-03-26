@@ -1,7 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import React, { Component } from "react";
 import GifBox from "../GifBox";
-import ProgressBar from "../ProgressBar";
 const StyledDiv = styled.div`
   display: flex;
   width: 500px;
@@ -136,17 +135,14 @@ export default class GifBoxWrapper extends Component {
   };
 
   restartGame = () => {
-    document.querySelector(".fill").classList.remove("fillAnim");
-    document
-      .querySelector(".question")
-      .setAttribute("style", "opacity: 0;");
+    document.querySelector(".question").setAttribute("style", "opacity: 0;");
     this.fetchApi();
     setTimeout(() => {
-      document
-        .querySelector(".question")
-        .setAttribute("style", "opacity: 1;");
-      document.querySelector(".fill").classList.add("fillAnim");
-    }, 1000);
+      document.querySelector(".question").setAttribute("style", "opacity: 1;");
+      const msgBox = document.querySelector(".wrong-right");
+      msgBox.innerHTML = "";
+      msgBox.classList.remove("flashing");
+    }, 1200);
   };
 
   resetImage = () => {
@@ -158,30 +154,32 @@ export default class GifBoxWrapper extends Component {
   };
 
   choseRightAnswer = () => {
+    const msgBox = document.querySelector(".wrong-right");
+    msgBox.innerHTML = "🎉";
+    msgBox.classList.add("flashing");
     this.resetImage();
     this.setState({
       points: this.state.points + 1
     });
-    console.log("Well Done!");
-
     this.restartGame();
   };
+
   choseWrongAnswer = () => {
+    const msgBox = document.querySelector(".wrong-right");
+    msgBox.innerHTML = "💩";
+    msgBox.classList.add("flashing");
     this.resetImage();
     this.setState({
       points: this.state.points - 1
     });
-    console.log("Try Again!");
     this.restartGame();
   };
   render() {
     return (
       <div className="game-wrapper">
-        {/* <button onClick={this.fetchApi}>Fetch</button> */}{" "}
         <StyledDiv>
-          <h1 className="question"> {this.state.question} </h1> <ProgressBar />{" "}
-          {/* <p>{this.state.points}</p> */}{" "}
-          {/* <p>A: {this.state.correct_answer}</p> */}{" "}
+          <p className="wrong-right" />
+          <h1 className="question"> {this.state.question} </h1>
           <GifBox
             id={1}
             url={this.state.correct_image}
@@ -189,30 +187,25 @@ export default class GifBoxWrapper extends Component {
             isCorrect={true}
             choseRightAnswer={this.choseRightAnswer}
           />
-          {/* <p>B: {this.state.incorrect_answers[0]}</p> */}{" "}
           <GifBox
             id={2}
             url={this.state.incorrect_image_b}
             choseWrongAnswer={this.choseWrongAnswer}
             alt=""
-          />{" "}
-          {/* 
-                  <p>C: {this.state.incorrect_answers[1]}</p> */}{" "}
+          />
           <GifBox
             id={3}
             url={this.state.incorrect_image_c}
             choseWrongAnswer={this.choseWrongAnswer}
             alt=""
-          />{" "}
-          {/* 
-                  <p>D: {this.state.incorrect_answers[2]}</p> */}{" "}
+          />
           <GifBox
             id={4}
             url={this.state.incorrect_image_d}
             choseWrongAnswer={this.choseWrongAnswer}
             alt=""
           />
-        </StyledDiv>{" "}
+        </StyledDiv>
       </div>
     );
   }
