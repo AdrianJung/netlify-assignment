@@ -146,6 +146,10 @@ export default class GifBoxWrapper extends Component {
         .querySelector(".question")
         .setAttribute("style", "opacity: 1;");
       document.querySelector(".fill").classList.add("fillAnim");
+      const msgBox = document.querySelector('.wrong-right')
+      msgBox.innerHTML =""
+    msgBox.classList.remove('flashing')
+
     }, 1200);
   };
 
@@ -159,6 +163,7 @@ export default class GifBoxWrapper extends Component {
   choseRightAnswer = () => {
     const msgBox = document.querySelector('.wrong-right')
     msgBox.innerHTML ="🎉"
+    msgBox.classList.add('flashing')
     this.resetImage();
     this.setState({
       points: this.state.points + 1
@@ -169,6 +174,7 @@ export default class GifBoxWrapper extends Component {
   choseWrongAnswer = () => {
     const msgBox = document.querySelector('.wrong-right')
     msgBox.innerHTML ="💩"
+    msgBox.classList.add('flashing')
     this.resetImage();
     this.setState({
       points: this.state.points - 1
@@ -179,7 +185,7 @@ export default class GifBoxWrapper extends Component {
     return (
       <div className="game-wrapper">
         <StyledDiv>
-          <p className="wrong-right">Nothing</p>
+          <p className="wrong-right"></p>
           <h1 className="question"> {this.state.question} </h1> <ProgressBar />
           <GifBox
             id={1}

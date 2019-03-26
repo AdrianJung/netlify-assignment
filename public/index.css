@@ -23,6 +23,18 @@
 			width: 100%;
 		}
 }
+@keyframes flash {
+	0% {
+		opacity: 0;
+ }
+ 25%{
+	 opacity: 1;
+ }
+ 100% {
+	opacity: 0;
+ }
+}
+
 p, button {
 	font-size: 18px;
 
@@ -55,7 +67,11 @@ body {
 }
 
 .wrong-right {
-	font-size: 72px;
+	font-size: 172px;
 	position: absolute;
-	transform: translateX(-400px);
+	transform: translate(-280px, 130px);
+}
+
+.flashing {
+	animation: 1.2s flash ease-in-out 1;
 }
