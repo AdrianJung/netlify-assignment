@@ -152,6 +152,7 @@ export default class GifBoxWrapper extends Component {
       img.src = "https://media.giphy.com/media/N256GFy1u6M6Y/giphy.gif";
     });
   };
+
   choseRightAnswer = () => {
     const msgBox = document.querySelector(".wrong-right");
     msgBox.innerHTML = "🎉";

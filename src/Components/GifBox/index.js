@@ -1,19 +1,25 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import GifBoxWrapper from '../GifBoxWrapper'
-let randNum = 3
+
+
+const randomNumber = () => {
+  return Math.floor(Math.random() * Math.floor(5));
+}
+
 const StyledImage = styled.img`
   width: 200px;
   height: 200px;
   margin: 2px;
   border: none;
+  order:${randomNumber};
   cursor: pointer;
   &:hover {
     transform: scale(1.02);
   }
   ${props => props.highlighted && 'border: 2px solid black'}
-  ${props => props.randomOrder && `order: 3`}
 `
+
 
 
 export default class GifBox extends Component {
@@ -21,7 +27,7 @@ export default class GifBox extends Component {
   state = {
     isClicked: false,
   }
-
+  
   correctAnswer = (e) => {
     this.props.choseRightAnswer()
   }
@@ -39,7 +45,7 @@ export default class GifBox extends Component {
 
   render() {
     return (
-      <StyledImage data-id={this.props.id} highlighted={this.state.isClicked} src={this.props.url} onClick={this.handleClick}/>
+      <StyledImage data-id={this.props.id} src={this.props.url} onClick={this.handleClick}/>
     )
   }
 }
