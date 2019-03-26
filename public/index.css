@@ -53,3 +53,9 @@ body {
 	height: 100%;
 	background-color: black;
 }
+
+.wrong-right {
+	font-size: 72px;
+	position: absolute;
+	transform: translateX(-400px);
+}
