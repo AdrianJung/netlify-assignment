@@ -31,27 +31,35 @@ componentDidMount() {
 }
 
 fetchImages = (queryA, queryB, queryC, queryD) => {
-
+let key = "HcrAILfdxMhMRyagDsVo2qcphMPxSc6x"
   
-  fetch(`http://api.giphy.com/v1/gifs/search?q=${queryA}&api_key=9kJfRi6ip66K2xkxwSKa7ZAyK7H5sjpY&limit=1`)
+  fetch(`http://api.giphy.com/v1/gifs/search?q=${queryA}&api_key=${key}&limit=1`,{
+    headers: {'Accept-Encoding':'gzip;q=1.0, compress;q=0.5'}
+  })
     .then(res => res.json()).then(result => {
       this.setState({
         correct_image: result.data[0].images.downsized.url
       })
     })
-    fetch(`http://api.giphy.com/v1/gifs/search?q=${queryB}&api_key=9kJfRi6ip66K2xkxwSKa7ZAyK7H5sjpY&limit=1`)
+    fetch(`http://api.giphy.com/v1/gifs/search?q=${queryB}&api_key=${key}&limit=1`,{
+      headers: {'Accept-Encoding':'gzip;q=1.0, compress;q=0.5'}
+    })
     .then(res => res.json()).then(result => {
       this.setState({
         incorrect_image_b: result.data[0].images.downsized.url
       })
     })
-    fetch(`http://api.giphy.com/v1/gifs/search?q=${queryC}&api_key=9kJfRi6ip66K2xkxwSKa7ZAyK7H5sjpY&limit=1`)
+    fetch(`http://api.giphy.com/v1/gifs/search?q=${queryC}&api_key=${key}&limit=1`,{
+      headers: {'Accept-Encoding':'gzip;q=1.0, compress;q=0.5'}
+    })
     .then(res => res.json()).then(result => {
       this.setState({
         incorrect_image_c: result.data[0].images.downsized.url
       })
     })
-    fetch(`http://api.giphy.com/v1/gifs/search?q=${queryD}&api_key=9kJfRi6ip66K2xkxwSKa7ZAyK7H5sjpY&limit=1`)
+    fetch(`http://api.giphy.com/v1/gifs/search?q=${queryD}&api_key=${key}&limit=1`,{
+      headers: {'Accept-Encoding':'gzip;q=1.0, compress;q=0.5'}
+    })
     .then(res => res.json()).then(result => {
       this.setState({
         incorrect_image_d: result.data[0].images.downsized.url
@@ -66,7 +74,9 @@ fetchApi = () => {
   let difficulty ="easy"
   const url = `https://opentdb.com/api.php?amount=${limit}&category=${category}&type=${type}&difficulty=${difficulty}`
 console.log(url)
-  fetch(url)
+  fetch(url, {
+    headers: {'Accept-Encoding':'gzip;q=1.0, compress;q=0.5'}
+  })
     .then(res => res.json())
     .then(data => {
       console.log(data)
@@ -111,15 +121,24 @@ console.log(url)
       document.querySelector('.fill').classList.add('fillAnim')
     }, 1000);
   }
+
+  resetImage = () => {
+    const imgBox = [...document.querySelectorAll('img')]
+    
+      imgBox.map(img => {img.src = "https://media.giphy.com/media/N256GFy1u6M6Y/giphy.gif"})
+  }
   choseRightAnswer = () => {
+    this.resetImage()
     this.setState({
       points: this.state.points +1
     })
     console.log('Well Done!')
+
     this.restartGame()
     
   }
   choseWrongAnswer = () => {
+    this.resetImage()
     this.setState({
       points: this.state.points - 1
     })
@@ -136,7 +155,6 @@ console.log(url)
       {/* <p>{this.state.points}</p> */}
       {/* <p>A: {this.state.correct_answer}</p> */}
           <GifBox id={1} url={this.state.correct_image} alt="" isCorrect={true} choseRightAnswer={this.choseRightAnswer}/>
-          <img id={1} url={this.state.correct_image} alt="" isCorrect={true} choseRightAnswer={this.choseRightAnswer}/>
 
           {/* <p>B: {this.state.incorrect_answers[0]}</p> */}
           <GifBox id={2} url={this.state.incorrect_image_b} choseWrongAnswer={this.choseWrongAnswer} alt=""/>
